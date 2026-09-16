@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ SITE_NAME }} - {{ SITE_TAGLINE }}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/design-system.css' %}">
+  {% block extra_css %}{% endblock %}
+  <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap' rel='stylesheet'>
+</head>
+<body>
+
+  <!-- UNIVERSAL TOP NAVBAR -->
+  <style>
+    .nav-link {
+        color: var(--paper);
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 700;
+        transition: 0.3s;
+        text-shadow: 0 0 12px rgba(255,255,255,0.2);
+        padding-bottom: 5px;
+        position: relative;
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 3px;
+        bottom: 0;
+        left: 50%;
+        background-color: #f97316;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+        border-radius: 2px;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link.active { color: #f97316; text-shadow: 0 0 12px rgba(249,115,22,0.4); }
+    .nav-link.active::after { width: 100%; }
+  </style>
+  <!-- Navbar -->
+<nav style="display: flex; justify-content: space-between; align-items: center; padding: 25px 50px; background: var(--surface); backdrop-filter: blur(10px); border-bottom: 1px solid var(--surface-3); position: sticky; top: 0; z-index: 100;">
+  <div class="logo" style="display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 34px; letter-spacing: 0.5px; color: var(--paper); text-shadow: 0 0 10px rgba(255,255,255,0.1);">
+    🚗 Smart<span style="color: #ffaa1d; text-shadow: 0 0 15px rgba(255,170,29,0.6);">Garage</span>
+  </div>
+  
+  <div class="nav-links" style="display: flex; gap: 40px; align-items: center;">
+    <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
+    <a href="{% url 'core:mechanic_dashboard' %}" class="nav-link {% if '/mechanic/' in request.path %}active{% endif %}">👨‍🔧 Mechanic Portal</a>
+    
+    {% if request.user.is_authenticated %}
+        {% if request.user.role != 'MECHANIC' %}
+          <a href="{% url 'core:dashboard_redirect' %}" class="nav-link {% if '/dashboard/' in request.path or '/customer/' in request.path or '/owner/' in request.path %}active{% endif %}">Dashboard</a>
+        {% endif %}
+        <a href="{% url 'core:ai_mechanic' %}" class="nav-link {% if '/ai-mechanic/' in request.path %}active{% endif %}">🤖 AI Mechanic</a>
+        
+        <a href="{% url 'accounts:logout' %}" style="background: var(--surface-3); border: 2px solid var(--steel); color: var(--paper); padding: 12px 28px; border-radius: 12px; text-decoration: none; font-size: 20px; font-weight: 700; transition: 0.3s; box-shadow: 0 0 15px rgba(255,255,255,0.1);">Logout 👋</a>
+    {% else %}
+        <a href="{% url 'accounts:login' %}" style="background: var(--paper); color: var(--ink); padding: 12px 28px; border-radius: 12px; text-decoration: none; font-size: 20px; font-weight: 800; transition: 0.3s; box-shadow: 0 0 15px rgba(255,255,255,0.2);">Login</a>
+    {% endif %}
+      
+      <!-- Theme Toggle in Navbar -->
+      <button id="themeToggle" style="background: transparent; color: var(--paper); border: 2px solid var(--steel); border-radius: 50%; width: 45px; height: 45px; font-size: 22px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center;" title="Toggle Theme">
+          🌞
+      </button>
+  </div>
+</nav>
+
+  <!-- Messages / Notifications -->
+  {% if messages %}
+    {% for message in messages %}
+      <div id="toast-stack">
+        <div class="toast {{ message.tags }}">
+          {{ message }}
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+  
+  <!-- Global Floating Tools Animation Background -->
+  <div class="global-floaters" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden; opacity: 0.6;">
+    <div class="animated-tool hover-scale" style="position: absolute; top: 15%; left: 5%; font-size: 3rem;">🔧</div>
+    <div class="animated-tool hover-scale" style="position: absolute; top: 70%; left: 10%; font-size: 3.5rem; animation-delay: 1s;">🔨</div>
+    <div class="animated-tool hover-scale" style="position: absolute; top: 30%; right: 8%; font-size: 2.5rem; animation-delay: 2s;">🪛</div>
+    <div class="animated-gear hover-scale" style="position: absolute; top: 80%; right: 15%; font-size: 4rem; color: rgba(255,255,255,0.8);">⚙️</div>
+    <div class="animated-tool hover-scale" style="position: absolute; top: 50%; left: 80%; font-size: 3rem; animation-delay: 0.5s;">🧰</div>
+  </div>
+
+  <div class="content">
+      {% block content %}{% endblock %}
+  </div>
+
+  <!-- Global scripts -->
+  <script src="{% static 'js/main.js' %}"></script>
+  <script>
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+      
+      if (localStorage.getItem('theme') === 'light') {
+          body.classList.add('light-mode');
+          themeToggle.innerHTML = '🌙';
+      }
+
+      themeToggle.addEventListener('click', () => {
+          body.classList.toggle('light-mode');
+          if (body.classList.contains('light-mode')) {
+              localStorage.setItem('theme', 'light');
+              themeToggle.innerHTML = '🌙';
+          } else {
+              localStorage.setItem('theme', 'dark');
+              themeToggle.innerHTML = '☀️';
+          }
+          themeToggle.style.transform = 'scale(1.2)';
+          setTimeout(() => themeToggle.style.transform = 'scale(1)', 200);
+      });
+  </script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

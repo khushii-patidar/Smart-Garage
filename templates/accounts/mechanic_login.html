@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Mechanic Login — Smart Garage{% endblock %}
+
+{% block content %}
+<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;">
+  <div class="card" style="width:100%; max-width:400px; border-top: 4px solid #ffaa1d;">
+    <a href="{% url 'core:home' %}" class="brand" style="margin-bottom:28px;">
+      <span class="brand-mark" style="background: #ffaa1d; color: #111;">👨‍🔧</span> Smart Garage
+    </a>
+    <h2 style="margin-bottom:4px; color: #ffaa1d;">Mechanic Login</h2>
+    <p style="margin-bottom:28px; color: var(--muted);">Enter your staff credentials to access the workspace.</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="field"><label>Username</label>{{ form.username }}</div>
+      <div class="field"><label>Password</label>{{ form.password }}</div>
+
+      <!-- Errors -->
+      {% if form.errors %}
+      <div style="padding:12px; border-radius:var(--radius-sm); background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); color:var(--red); font-size:14px; margin-bottom:16px;">
+        Invalid username or password.
+      </div>
+      {% endif %}
+
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; background: #ffaa1d; color: #111; font-weight: 800; margin-bottom: 20px;">Enter Workspace</button>
+      
+    </form>
+  </div>
+</div>
+{% endblock %}

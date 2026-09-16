@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block title %}Find Nearest Garage | Smart Garage{% endblock %}
+
+{% block extra_css %}
+<!-- Leaflet CSS for Map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<style>
+body { background: #070c18; color: #fff; font-family: 'Poppins', sans-serif; }
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid rgba(255,255,255,0.05); background: #0f172a; }
+.logo { font-size: 24px; font-weight: 900; color: #fff; text-decoration: none; }
+.logo span { color: #f97316; }
+.nbtn { padding: 10px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; transition: 0.3s; }
+.nlogin { color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.1); }
+.nlogin:hover { background: rgba(255,255,255,0.05); }
+
+.map-container { max-width: 900px; margin: 40px auto; padding: 0 20px; text-align: center; }
+.map-container h1 { font-size: 32px; font-weight: 900; margin-bottom: 10px; }
+.map-container p { color: rgba(255,255,255,0.5); font-size: 16px; margin-bottom: 30px; }
+
+#map { height: 500px; width: 100%; border-radius: 20px; border: 2px solid rgba(255,255,255,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.5); z-index: 1; }
+
+.btn-or { background: #f97316; color: #fff; padding: 14px 28px; border-radius: 12px; font-weight: 700; font-size: 16px; border: none; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.btn-or:hover { background: #ea580c; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(249,115,22,0.3); }
+
+/* Fix Leaflet text colors for dark theme */
+.leaflet-container { font-family: 'Poppins', sans-serif; color: #111; }
+</style>
+{% endblock %}
+
+{% block content %}
+<nav class="nav">
+  <a href="/" class="logo">
+    🚗 Smart<span>Garage</span>
+  </a>
+  <div>
+    <a href="{% url 'core:dashboard_redirect' %}" class="nbtn nlogin">🔙 Back</a>
+  </div>
+</nav>
+
+<div class="map-container">
+  <h1>📍 Find Nearest Garage</h1>
+  <p>Humari nearest workshop dhoondhne ke liye niche diye gaye button par click karein.</p>
+
+  <button class="btn-or" id="locateBtn" onclick="findLocation()">
+    🎯 Get My Location & Find Garage
+  </button>
+
+  <div id="map"></div>
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+  // Initialize the map (Default location: India Center)
+  var map = L.map('map').setView([20.5937, 78.9629], 5);
+
+  // Add OpenStreetMap tiles (FREE, no API key needed!)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  function findLocation() {
+    const btn = document.getElementById('locateBtn');
+    btn.innerHTML = '⏳ Finding your location...';
+    
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+      alert("Geolocation is not supported by this browser.");
+      btn.innerHTML = '🎯 Get My Location & Find Garage';
+    }
+  }
+
+  function showPosition(position) {
+    const btn = document.getElementById('locateBtn');
+    btn.innerHTML = '✅ Location Found!';
+    
+    var userLat = position.coords.latitude;
+    var userLng = position.coords.longitude;
+    
+    // Zoom map to user location
+    map.setView([userLat, userLng], 14);
+    
+    // Add User Marker
+    var userMarker = L.marker([userLat, userLng]).addTo(map)
+        .bindPopup("<b>You are here!</b>").openPopup();
+        
+    // Add a Dummy Garage Marker nearby (Just slightly offset from user)
+    var garageLat = userLat + 0.005;
+    var garageLng = userLng + 0.005;
+    
+    // Custom Garage Icon
+    var garageIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    setTimeout(() => {
+        var garageMarker = L.marker([garageLat, garageLng], {icon: garageIcon}).addTo(map)
+            .bindPopup("<b>🚗 SmartGarage (Nearest)</b><br>Workshop is just 2 mins away!<br><a href='/dashboard/' style='color:#f97316; font-weight:bold;'>Book Service Now</a>").openPopup();
+            
+        // Draw a line between User and Garage
+        var latlngs = [[userLat, userLng], [garageLat, garageLng]];
+        var polyline = L.polyline(latlngs, {color: '#f97316', weight: 4, dashArray: '10, 10'}).addTo(map);
+        map.fitBounds(polyline.getBounds(), {padding: [50, 50]});
+    }, 1000);
+  }
+
+  function showError(error) {
+    const btn = document.getElementById('locateBtn');
+    btn.innerHTML = '🎯 Get My Location & Find Garage';
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        alert("Aapne Location ki permission deny kar di hai. Pleease allow it!");
+        break;
+      case error.POSITION_UNAVAILABLE:
+        alert("Location information is unavailable.");
+        break;
+      case error.TIMEOUT:
+        alert("The request to get user location timed out.");
+        break;
+      case error.UNKNOWN_ERROR:
+        alert("An unknown error occurred.");
+        break;
+    }
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "dashboard/_dashboard_base.html" %}
+{% block page_title %}Advisor Desk{% endblock %}
+{% block sidebar_links %}
+  <a class="dash-nav-link active" href="{% url 'core:advisor_dashboard' %}">Overview</a>
+  <a class="dash-nav-link" href="#">Bookings <span class="badge badge-neutral" style="margin-left:auto;">Phase 5</span></a>
+  <a class="dash-nav-link" href="#">Job Cards <span class="badge badge-neutral" style="margin-left:auto;">Phase 6</span></a>
+{% endblock %}
+{% block dash_content %}
+<div class="grid grid-3">
+  <div class="stat-card"><div class="stat-label">Pending Bookings</div><div class="stat-value">0</div></div>
+  <div class="stat-card"><div class="stat-label">Job Cards In Progress</div><div class="stat-value">0</div></div>
+  <div class="stat-card"><div class="stat-label">Ready for Invoice</div><div class="stat-value">0</div></div>
+</div>
+<div class="card" style="margin-top:24px;"><h3>Advisor tools coming in Phase 5–6</h3><p>Booking inbox, job card creation and mechanic assignment.</p></div>
+{% endblock %}

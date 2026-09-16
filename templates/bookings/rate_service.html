@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Rate Service | Smart Garage{% endblock %}
+
+{% block extra_css %}
+<style>
+body { background: #070c18; color: #fff; font-family: 'Poppins', sans-serif; }
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid rgba(255,255,255,0.05); background: #0f172a; }
+.logo { font-size: 24px; font-weight: 900; color: #fff; text-decoration: none; }
+.logo span { color: #f97316; }
+
+.form-container { max-width: 500px; margin: 60px auto; background: #1b1e26; padding: 40px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.4); text-align: center; }
+.form-container h2 { font-size: 28px; font-weight: 900; margin-bottom: 10px; }
+.form-container p { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 30px; }
+
+.rating-stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 10px; margin-bottom: 20px; }
+.rating-stars input { display: none; }
+.rating-stars label { font-size: 40px; color: #444; cursor: pointer; transition: 0.2s; }
+.rating-stars label:hover, .rating-stars label:hover ~ label, .rating-stars input:checked ~ label { color: #facc15; }
+
+textarea { width: 100%; padding: 14px; background: #0d0e12; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-family: inherit; font-size: 15px; margin-bottom: 20px; resize: none; }
+textarea:focus { outline: none; border-color: #f97316; }
+
+.btn-or { width: 100%; background: #f97316; color: #fff; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 16px; border: none; cursor: pointer; transition: 0.3s; }
+.btn-or:hover { background: #ea580c; transform: translateY(-2px); }
+</style>
+{% endblock %}
+
+{% block content %}
+<nav class="nav">
+  <a href="/" class="logo">🚗 Smart<span>Garage</span></a>
+  <a href="{% url 'core:dashboard_redirect' %}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-weight:700;">🔙 Back</a>
+</nav>
+
+<div class="form-container">
+  <h2>⭐ Rate Our Service</h2>
+  <p>How did we do on your {{ booking.vehicle.brand }} {{ booking.vehicle.car_model }}?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    
+    <div class="rating-stars">
+      <input type="radio" name="rating" id="star5" value="5" required><label for="star5">★</label>
+      <input type="radio" name="rating" id="star4" value="4"><label for="star4">★</label>
+      <input type="radio" name="rating" id="star3" value="3"><label for="star3">★</label>
+      <input type="radio" name="rating" id="star2" value="2"><label for="star2">★</label>
+      <input type="radio" name="rating" id="star1" value="1"><label for="star1">★</label>
+    </div>
+
+    <textarea name="feedback" rows="4" placeholder="Any comments or feedback? (Optional)"></textarea>
+
+    <button type="submit" class="btn-or">Submit Rating</button>
+  </form>
+</div>
+{% endblock %}

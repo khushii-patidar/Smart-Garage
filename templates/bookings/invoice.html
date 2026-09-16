@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill #{{ booking.id }} | Smart Garage</title>
+    <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap' rel='stylesheet'>
+    <style>
+        body { font-family: 'Poppins', sans-serif; color: #111; background: #f4f4f5; padding: 40px 20px; }
+        .invoice-box { max-width: 600px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #eee; padding-bottom: 20px; margin-bottom: 20px; }
+        .header h1 { margin: 0; font-size: 24px; font-weight: 800; color: #f97316; }
+        
+        .inv-details { display: flex; justify-content: space-between; margin-bottom: 30px; font-size: 14px; color: #444; }
+        .inv-details strong { color: #111; }
+        
+        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        th, td { padding: 12px 0; text-align: left; border-bottom: 1px solid #eee; }
+        th { font-size: 13px; color: #888; text-transform: uppercase; }
+        td { font-size: 15px; font-weight: 600; }
+        
+        .total-box { text-align: right; font-size: 22px; font-weight: 800; color: #111; }
+        .total-box span { color: #f97316; }
+        
+        .footer { text-align: center; margin-top: 40px; font-size: 13px; color: #888; font-weight: 600; }
+        
+        .actions { text-align: center; margin-top: 30px; }
+        .btn { padding: 12px 24px; background: #f97316; color: #fff; font-weight: 600; text-decoration: none; border-radius: 8px; border: none; cursor: pointer; font-size: 15px; }
+        .btn:hover { background: #ea580c; }
+
+        @media print {
+            body { background: #fff; padding: 0; }
+            .invoice-box { box-shadow: none; padding: 0; }
+            .actions { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="actions">
+    <button class="btn" onclick="window.print()">🖨️ Print Bill</button>
+</div>
+<br>
+
+<div class="invoice-box">
+    <div class="header">
+        <h1>🚗 SmartGarage</h1>
+        <div style="text-align: right;">
+            <p style="margin:0; font-weight: 800; font-size:18px;">BILL #{{ booking.id }}</p>
+            <p style="margin:0; font-size: 12px; color: #10b981; font-weight:800;">PAID</p>
+        </div>
+    </div>
+
+    <div class="inv-details">
+        <div>
+            <p><strong>Customer:</strong> {{ booking.customer.first_name|default:booking.customer.username }}</p>
+            <p><strong>Car:</strong> {{ booking.vehicle.brand }} {{ booking.vehicle.car_model }}</p>
+        </div>
+        <div style="text-align: right;">
+            <p><strong>Date:</strong> {{ booking.created_at|date:"M d, Y" }}</p>
+            <p><strong>Reg:</strong> {{ booking.vehicle.registration_number }}</p>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Service</th>
+                <th style="text-align: right;">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ booking.get_service_type_display }}</td>
+                <td style="text-align: right;">₹{{ booking.final_bill|default:0 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="total-box">
+        Total: <span>₹{{ booking.final_bill|default:0 }}</span>
+    </div>
+
+    <div class="footer">
+        Thank you! Safe driving. 🚗💨
+    </div>
+</div>
+
+</body>
+</html>

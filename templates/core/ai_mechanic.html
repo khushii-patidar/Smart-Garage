@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% block title %}AI Mechanic Chat — SmartGarage{% endblock %}
+
+{% block content %}
+<div style="max-width: 1200px; width: 95%; margin: 20px auto; display: flex; flex-direction: column; height: 85vh;">
+    
+    <!-- Header -->
+    <div style="background: var(--surface-2); border-radius: 20px 20px 0 0; padding: 25px 30px; border-bottom: 2px solid var(--surface-3); display: flex; align-items: center; gap: 15px;">
+        <div style="font-size: 40px; background: rgba(41,211,198,0.1); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; animation: pulse-glow 2s infinite;">🤖</div>
+        <div>
+            <h1 style="margin: 0; font-size: 24px; color: var(--paper);">Smart AI Mechanic</h1>
+            <p style="margin: 5px 0 0 0; color: var(--muted); font-size: 14px;">Powered by OpenRouter (Smart Auto-Fallback). Ask me anything in Hindi or English!</p>
+        </div>
+    </div>
+
+    <!-- Chat Window -->
+    <div id="chat-window" style="background: var(--surface-1); flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; border-left: 1px solid var(--surface-3); border-right: 1px solid var(--surface-3);">
+        
+        <!-- Welcome Message -->
+        <div style="align-self: flex-start; max-width: 75%; display: flex; gap: 10px;">
+            <div style="font-size: 24px; margin-top: 5px;">🤖</div>
+            <div style="background: var(--surface-3); padding: 15px 20px; border-radius: 0 16px 16px 16px; color: var(--paper); line-height: 1.5;">
+                Namaste! 🙏 Main aapka AI Mechanic hu. Gaadi me koi problem aa rahi hai? Ya koi aawaz aa rahi hai? Muje batao!
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Input Area -->
+    <div style="background: var(--surface-2); padding: 20px 30px; border-radius: 0 0 20px 20px; border-top: 1px solid var(--surface-3); display: flex; gap: 15px;">
+        <input type="text" id="chat-input" placeholder="e.g., Meri gaadi start nahi ho rahi, kya karu?" 
+               style="flex: 1; background: var(--surface-1); border: 1px solid var(--surface-3); color: var(--paper); padding: 15px 20px; border-radius: 12px; font-size: 20px; outline: none; transition: 0.3s;">
+        <button id="send-btn" style="background: #29d3c6; color: #111; font-weight: 800; padding: 0 25px; border-radius: 12px; border: none; cursor: pointer; font-size: 20px; transition: 0.2s;">
+            Send 🚀
+        </button>
+    </div>
+
+</div>
+
+<script>
+    const chatWindow = document.getElementById('chat-window');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    
+    // Store chat history to remember context
+    let conversationHistory = [];
+
+    function addMessage(text, sender) {
+        const msgDiv = document.createElement('div');
+        msgDiv.style.maxWidth = '85%';
+        msgDiv.style.display = 'flex';
+        msgDiv.style.gap = '15px';
+        msgDiv.style.alignSelf = sender === 'user' ? 'flex-end' : 'flex-start';
+        msgDiv.style.flexDirection = sender === 'user' ? 'row-reverse' : 'row';
+
+        const icon = document.createElement('div');
+        icon.style.fontSize = '28px';
+        icon.style.marginTop = '5px';
+        icon.innerText = sender === 'user' ? '👤' : '🤖';
+
+        const bubble = document.createElement('div');
+        bubble.style.padding = '18px 25px';
+        bubble.style.lineHeight = '1.6';
+        bubble.style.fontSize = '18px'; // Increased font size
+        
+        if (sender === 'user') {
+            bubble.style.background = '#29d3c6';
+            bubble.style.color = '#111';
+            bubble.style.fontWeight = '600';
+            bubble.style.borderRadius = '20px 0 20px 20px';
+            bubble.innerText = text; // FIXED: Actually showing the user's text!
+        } else {
+            bubble.style.background = 'var(--surface-3)';
+            bubble.style.color = 'var(--paper)';
+            bubble.style.borderRadius = '0 20px 20px 20px';
+            if (text === 'typing') {
+                bubble.innerHTML = '<span style="font-size: 22px;">Typing... 🔧</span>';
+                bubble.id = 'typing-indicator';
+            } else {
+                // Parse bold (**text**) and newlines for a clean look
+                let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+                bubble.innerHTML = formattedText;
+            }
+        }
+
+        msgDiv.appendChild(icon);
+        msgDiv.appendChild(bubble);
+        chatWindow.appendChild(msgDiv);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    async function sendMessage() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        // Add user message to UI and history
+        addMessage(text, 'user');
+        conversationHistory.push({ "role": "user", "content": text });
+        chatInput.value = '';
+        
+        // Bot typing
+        addMessage('typing', 'bot');
+
+        try {
+            const response = await fetch('{% url "core:ai_chat" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ history: conversationHistory }) // Send entire history!
+            });
+            const data = await response.json();
+            
+            // Remove typing
+            document.getElementById('typing-indicator').parentElement.remove();
+            
+            if (data.reply) {
+                addMessage(data.reply, 'bot');
+                // Save AI reply to history so it remembers
+                conversationHistory.push({ "role": "assistant", "content": data.reply });
+            } else {
+                addMessage('Error: ' + (data.error || 'Something went wrong!'), 'bot');
+            }
+        } catch (error) {
+            document.getElementById('typing-indicator').parentElement.remove();
+            addMessage('Error connecting to the AI Mechanic server.', 'bot');
+        }
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+</script>
+{% endblock %}

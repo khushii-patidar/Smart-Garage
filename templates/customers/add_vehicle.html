@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Add Car | Smart Garage{% endblock %}
+
+{% block extra_css %}
+<style>
+/* RecipeHub Style Add Car */
+body { background: #070c18; color: #fff; font-family: 'Poppins', sans-serif; }
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid rgba(255,255,255,0.05); background: #0f172a; }
+.logo { font-size: 24px; font-weight: 900; color: #fff; text-decoration: none; }
+.logo span { color: #f97316; }
+.nbtn { padding: 10px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; transition: 0.3s; }
+.nlogin { color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.1); }
+.nlogin:hover { background: rgba(255,255,255,0.05); }
+
+.form-container { max-width: 500px; margin: 60px auto; background: #1b1e26; padding: 40px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+.form-container h2 { font-size: 28px; font-weight: 900; margin-bottom: 10px; text-align: center; }
+.form-container p { text-align: center; color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 30px; }
+
+.field { margin-bottom: 20px; }
+.field label { display: block; font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+.field input, .field select { width: 100%; padding: 14px; background: #0d0e12; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-family: inherit; font-size: 15px; }
+.field input:focus, .field select:focus { outline: none; border-color: #f97316; }
+
+.btn-or { width: 100%; background: #f97316; color: #fff; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 16px; text-align: center; border: none; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+.btn-or:hover { background: #ea580c; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(249,115,22,0.3); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+</style>
+{% endblock %}
+
+{% block content %}
+<nav class="nav">
+  <a href="/" class="logo">
+    🚗 Smart<span>Garage</span>
+  </a>
+  <div>
+    <a href="{% url 'core:dashboard_redirect' %}" class="nbtn nlogin">🔙 Back</a>
+  </div>
+</nav>
+
+<div class="form-container">
+  <h2>➕ Add Your Car</h2>
+  <p>Fill in your car details below.</p>
+
+  <form method="post" action="{% url 'customers:add_vehicle' %}">
+    {% csrf_token %}
+    
+    <div class="field">
+      <label>Car Number (eg: MP09 AB 1234)</label>
+      {{ form.registration_number }}
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Brand (Honda, Tata...)</label>
+        {{ form.brand }}
+      </div>
+      <div class="field">
+        <label>Model (City, Nexon...)</label>
+        {{ form.car_model }}
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Fuel Type</label>
+        {{ form.fuel_type }}
+      </div>
+      <div class="field">
+        <label>Year</label>
+        {{ form.manufacturing_year }}
+      </div>
+    </div>
+
+    <div class="field">
+      <label>How many KMs driven?</label>
+      {{ form.mileage }}
+    </div>
+
+    {% if form.errors %}
+      <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444; padding: 15px; border-radius: 12px; margin-bottom: 20px; font-size: 14px;">
+        <strong>Oops! There were some errors:</strong>
+        <ul style="margin-top: 5px; margin-bottom: 0; padding-left: 20px;">
+          {% for field in form %}
+            {% for error in field.errors %}
+              <li>{{ field.label }}: {{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+          {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <button type="submit" class="btn-or">💾 Save Car Details</button>
+  </form>
+</div>
+{% endblock %}

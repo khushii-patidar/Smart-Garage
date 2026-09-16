@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Mechanic Registration — Smart Garage{% endblock %}
+
+{% block content %}
+<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;">
+  <div class="card" style="width:100%; max-width:460px; border-top: 4px solid #ffaa1d;">
+    <a href="{% url 'core:home' %}" class="brand" style="margin-bottom:28px;">
+      <span class="brand-mark" style="background: #ffaa1d; color: #111;">👨‍🔧</span> Smart Garage
+    </a>
+    <h2 style="margin-bottom:4px; color: #ffaa1d;">Mechanic Portal Signup</h2>
+    <p style="margin-bottom:28px; color: rgba(255,255,255,0.6);">Register to view assigned cars and update repairs.</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+        <div class="field" style="flex: 1; margin-bottom: 0;"><label>First name</label>{{ form.first_name }}</div>
+        <div class="field" style="flex: 1; margin-bottom: 0;"><label>Username</label>{{ form.username }}</div>
+      </div>
+      <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+        <div class="field" style="flex: 1; margin-bottom: 0;"><label>Email</label>{{ form.email }}</div>
+        <div class="field" style="flex: 1; margin-bottom: 0;"><label>Phone</label>{{ form.phone }}</div>
+      </div>
+      <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+        <div class="field" style="flex: 1; margin-bottom: 0;"><label>Password</label>{{ form.password1 }}</div>
+        <div class="field" style="flex: 1; margin-bottom: 0;"><label>Confirm</label>{{ form.password2 }}</div>
+      </div>
+
+      <!-- Errors -->
+      {% if form.errors %}
+      <div style="padding:12px; border-radius:var(--radius-sm); background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); color:var(--red); font-size:14px; margin-bottom:16px;">
+        Please correct the errors in the form.
+        {{ form.errors }}
+      </div>
+      {% endif %}
+
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; background: #ffaa1d; color: #111; font-weight: 800;">Register as Mechanic</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

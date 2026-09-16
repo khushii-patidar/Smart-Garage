@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login — {{ SITE_NAME }}{% endblock %}
+
+{% block content %}
+<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; background:radial-gradient(circle at 20% 20%, rgba(255,170,29,0.08), transparent 40%), radial-gradient(circle at 80% 80%, rgba(41,211,198,0.08), transparent 40%);">
+  <div class="card" style="width:100%; max-width:420px;">
+    <a href="{% url 'core:home' %}" class="brand" style="margin-bottom:28px;">
+      <span class="brand-mark">SG</span> Smart Garage
+    </a>
+    <h2 style="margin-bottom:4px;">Welcome back</h2>
+    <p style="margin-bottom:28px;">Log in to your dashboard.</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="field">
+        <label for="id_username">Username</label>
+        {{ form.username }}
+      </div>
+      <div class="field">
+        <label for="id_password">Password</label>
+        {{ form.password }}
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Log in</button>
+    </form>
+
+    <p style="margin-top:20px; font-size:0.9rem;">
+      New customer?
+      <a href="{% url 'accounts:register' %}" style="color:var(--cyan); font-weight:600;">Create an account</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

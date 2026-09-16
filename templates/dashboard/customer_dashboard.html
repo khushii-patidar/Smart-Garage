@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block title %}My Garage | Smart Garage{% endblock %}
+
+{% block extra_css %}
+<style>
+/* RecipeHub Style Dashboard */
+body { background: #070c18; color: #fff; font-family: 'Poppins', sans-serif; }
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid rgba(255,255,255,0.05); background: #0f172a; }
+.logo { font-size: 24px; font-weight: 900; color: #fff; text-decoration: none; }
+.logo span { color: #f97316; }
+.nbtn { padding: 10px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; transition: 0.3s; }
+.nreg { background: #ef4444; color: #fff; }
+.nreg:hover { background: #dc2626; }
+
+.dash-container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+.welcome-box { text-align: center; margin-bottom: 50px; }
+.welcome-box h1 { font-size: 32px; font-weight: 900; margin-bottom: 10px; }
+.welcome-box p { color: rgba(255,255,255,0.5); font-size: 16px; }
+
+.btn-or { background: #f97316; color: #fff; padding: 12px 24px; border-radius: 12px; font-weight: 700; text-decoration: none; transition: 0.3s; display: inline-block; }
+.btn-or:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(249,115,22,0.3); }
+
+.car-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 24px; margin-top: 30px; }
+.car-card { background: #1b1e26; border: 1px solid rgba(255,255,255,0.05); padding: 24px; border-radius: 20px; position: relative; overflow: hidden; }
+.car-card:hover { border-color: #29d3c6; }
+.c-badge { background: rgba(41,211,198,0.1); color: #29d3c6; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; display: inline-block; margin-bottom: 12px; }
+.car-name { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+.car-sub { color: rgba(255,255,255,0.4); font-size: 14px; margin-bottom: 20px; }
+.c-btn { width: 100%; display: block; text-align: center; background: rgba(255,255,255,0.05); color: #fff; padding: 10px; border-radius: 10px; font-weight: 600; text-decoration: none; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+.c-btn:hover { background: #f97316; border-color: #f97316; }
+.empty-box { text-align: center; padding: 60px 20px; background: #1b1e26; border-radius: 24px; border: 1px dashed rgba(255,255,255,0.1); }
+.empty-box h2 { font-size: 40px; margin-bottom: 10px; }
+
+/* Pizza Tracker CSS */
+.tracker-container { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; position: relative; width: 100%; }
+.tracker-step { flex: 1; text-align: center; position: relative; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0; z-index: 2; padding: 0 2px; overflow-wrap: break-word; }
+.tracker-icon { width: 32px; height: 32px; background: #1b1e26; border: 2px solid rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 14px; position: relative; z-index: 2; transition: 0.3s; }
+.tracker-line { position: absolute; top: 16px; left: 50%; width: 100%; height: 2px; background: rgba(255,255,255,0.1); z-index: 1; }
+.tracker-step:last-child .tracker-line { display: none; }
+.tracker-step.done .tracker-icon { background: #22c55e; border-color: #22c55e; color: #111; }
+.tracker-step.done .tracker-line { background: #22c55e; }
+.tracker-step.done { color: #22c55e; }
+.tracker-step.active .tracker-icon { background: #f97316; border-color: #f97316; box-shadow: 0 0 15px rgba(249,115,22,0.4); color: #fff; }
+.tracker-step.active { color: #f97316; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="dash-container">
+  <div class="welcome-box">
+    <h1>Hello, {{ request.user.first_name|default:request.user.username }}! 👋</h1>
+    <p>View your vehicles and track their service status here.</p>
+    <br>
+    <a href="{% url 'customers:add_vehicle' %}" class="btn-or">➕ Add New Car</a>
+  </div>
+
+  <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+    🚙 My Cars
+  </h2>
+
+  {% if vehicles %}
+    <div class="car-grid" style="margin-bottom: 50px;">
+      {% for v in vehicles %}
+        <div class="car-card hover-scale">
+          <div class="c-badge">{{ v.registration_number }}</div>
+          <div class="car-name">{{ v.brand }} {{ v.car_model }}</div>
+          <div class="car-sub">Fuel: {{ v.fuel_type }} • Year: {{ v.manufacturing_year }}</div>
+          
+          <a href="{% url 'bookings:create_booking' v.id %}" class="c-btn">📅 Book Service</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-box" style="margin-bottom: 50px; text-align:center;">
+      <h2 class="animated-tool">🚖</h2>
+      <h3 style="font-size:20px; margin-bottom:10px;">Your garage is completely empty!</h3>
+      <p style="color:rgba(255,255,255,0.4); margin-bottom:20px;">Add your car first to book a service.</p>
+      <a href="{% url 'customers:add_vehicle' %}" class="btn-or hover-scale">➕ Add Your First Car</a>
+    </div>
+  {% endif %}
+
+  <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+    📝 My Service History
+  </h2>
+  
+  {% if bookings %}
+    <div class="car-grid">
+      {% for b in bookings %}
+        <div class="car-card" style="border-left: 4px solid #f97316;">
+          <div class="car-name">{{ b.vehicle.brand }} {{ b.vehicle.car_model }}</div>
+          <div class="car-sub">Service: {{ b.get_service_type_display }} • 📅 {{ b.booking_date }}</div>
+          
+          <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px;">
+              
+              <!-- Pizza Tracker HTML -->
+              <div class="tracker-container">
+                <div class="tracker-step {% if b.status != 'Pending' %}done{% else %}active{% endif %}">
+                  <div class="tracker-icon">📥</div>
+                  <div class="tracker-line"></div>
+                  Pending
+                </div>
+                <div class="tracker-step {% if b.status == 'Ready' or b.status == 'Delivered' %}done{% elif b.status == 'Repairing' %}active{% endif %}">
+                  <div class="tracker-icon">🔧</div>
+                  <div class="tracker-line"></div>
+                  Repairing
+                </div>
+                <div class="tracker-step {% if b.status == 'Delivered' %}done{% elif b.status == 'Ready' %}active{% endif %}">
+                  <div class="tracker-icon">✨</div>
+                  <div class="tracker-line"></div>
+                  Ready
+                </div>
+                <div class="tracker-step {% if b.status == 'Delivered' %}done{% endif %}">
+                  <div class="tracker-icon">🏁</div>
+                  Delivered
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-size: 13px; color: rgba(255,255,255,0.6);">Final Bill:</span>
+                <span style="font-size: 14px; font-weight: 700; color: #f97316;">
+                  {% if b.final_bill %}₹{{ b.final_bill }}{% else %}Wait for bill{% endif %}
+                </span>
+              </div>
+              
+              {% if b.status == 'Ready' and b.final_bill %}
+                <div style="margin-top: 15px;">
+                  <button onclick="alert('Payment Gateway Integration (Razorpay/Stripe) is planned for Phase 2!');" class="action-btn" style="background: #22c55e; color: #fff; width: 100%; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 16px;">💳 Pay ₹{{ b.final_bill }} Now</button>
+                </div>
+              {% endif %}
+
+              {% if b.status == 'Delivered' and b.final_bill %}
+                <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
+                  <a href="{% url 'bookings:view_invoice' b.id %}" target="_blank" class="action-btn btn-bill">📄 Download Bill PDF</a>
+                  
+                  {% if not b.rating %}
+                    <a href="{% url 'bookings:rate_service' b.id %}" class="action-btn btn-rate">⭐ Rate Service</a>
+                  {% endif %}
+                </div>
+                
+                {% if b.rating %}
+                  <div class="rating-display">
+                    {% if b.rating == 5 %}★★★★★{% elif b.rating == 4 %}★★★★☆{% elif b.rating == 3 %}★★★☆☆{% elif b.rating == 2 %}★★☆☆☆{% else %}★☆☆☆☆{% endif %}
+                  </div>
+                {% endif %}
+              {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-box" style="padding: 30px;">
+      <p style="color:rgba(255,255,255,0.4); margin: 0;">You haven't booked any services yet.</p>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
