@@ -40,12 +40,12 @@
     .nav-link.active::after { width: 100%; }
   </style>
   <!-- Navbar -->
-<nav style="display: flex; justify-content: space-between; align-items: center; padding: 25px 50px; background: var(--surface); backdrop-filter: blur(10px); border-bottom: 1px solid var(--surface-3); position: sticky; top: 0; z-index: 100;">
-  <div class="logo" style="display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 34px; letter-spacing: 0.5px; color: var(--paper); text-shadow: 0 0 10px rgba(255,255,255,0.1);">
+<nav style="display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background: var(--surface); backdrop-filter: blur(10px); border-bottom: 1px solid var(--surface-3); position: sticky; top: 0; z-index: 100;">
+  <div class="logo" style="display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 26px; letter-spacing: 0.5px; color: var(--paper); text-shadow: 0 0 10px rgba(255,255,255,0.1);">
     🚗 Smart<span style="color: #ffaa1d; text-shadow: 0 0 15px rgba(255,170,29,0.6);">Garage</span>
   </div>
   
-  <div class="nav-links" style="display: flex; gap: 40px; align-items: center;">
+  <div class="nav-links" style="display: flex; gap: 30px; align-items: center;">
     <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
     <a href="{% url 'core:mechanic_dashboard' %}" class="nav-link {% if '/mechanic/' in request.path %}active{% endif %}">👨‍🔧 Mechanic Portal</a>
     
@@ -55,9 +55,9 @@
         {% endif %}
         <a href="{% url 'core:ai_mechanic' %}" class="nav-link {% if '/ai-mechanic/' in request.path %}active{% endif %}">🤖 AI Mechanic</a>
         
-        <a href="{% url 'accounts:logout' %}" style="background: var(--surface-3); border: 2px solid var(--steel); color: var(--paper); padding: 12px 28px; border-radius: 12px; text-decoration: none; font-size: 20px; font-weight: 700; transition: 0.3s; box-shadow: 0 0 15px rgba(255,255,255,0.1);">Logout 👋</a>
+        <a href="{% url 'accounts:logout' %}" style="background: var(--surface-3); border: 2px solid var(--steel); color: var(--paper); padding: 10px 20px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 700; transition: 0.3s; box-shadow: 0 0 15px rgba(255,255,255,0.1);">Logout 👋</a>
     {% else %}
-        <a href="{% url 'accounts:login' %}" style="background: var(--paper); color: var(--ink); padding: 12px 28px; border-radius: 12px; text-decoration: none; font-size: 20px; font-weight: 800; transition: 0.3s; box-shadow: 0 0 15px rgba(255,255,255,0.2);">Login</a>
+        <a href="{% url 'accounts:login' %}" style="background: var(--paper); color: var(--ink); padding: 10px 20px; border-radius: 12px; text-decoration: none; font-size: 16px; font-weight: 800; transition: 0.3s; box-shadow: 0 0 15px rgba(255,255,255,0.2);">Login</a>
     {% endif %}
       
       <!-- Theme Toggle in Navbar -->

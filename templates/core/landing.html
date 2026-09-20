@@ -89,16 +89,16 @@
 <!-- HERO SECTION -->
 <div class="hero">
   <div class="hero-in">
-    <h1 class="htitle" style="font-size: clamp(60px, 10vw, 120px);">Smart<span class="o">Garage</span></h1>
-    <p class="hero-sub" style="font-size: 22px; max-width: 500px;">India's Smartest Platform for Car Service & Repair. Book instantly or chat with our AI Mechanic.</p>
+    <h1 class="htitle" style="font-size: clamp(40px, 8vw, 80px);">Smart<span class="o">Garage</span></h1>
+    <p class="hero-sub" style="font-size: 18px; max-width: 600px;">India's Smartest Platform for Car Service & Repair. Book instantly or chat with our AI Mechanic.</p>
     
     <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
         {% if request.user.is_authenticated %}
-            <a href="{% url 'core:dashboard_redirect' %}" class="h-btn" style="background: #f97316; color: #fff; box-shadow: 0 10px 25px rgba(249,115,22,0.4); font-size: 1.3rem; padding: 18px 45px;">Go to Dashboard 🚀</a>
+            <a href="{% url 'core:dashboard_redirect' %}" class="h-btn" style="background: #f97316; color: #fff; box-shadow: 0 10px 25px rgba(249,115,22,0.4); font-size: 1.1rem; padding: 14px 30px;">Go to Dashboard 🚀</a>
         {% else %}
-            <a href="{% url 'accounts:login' %}" class="h-btn" style="background: #f97316; color: #fff; box-shadow: 0 10px 25px rgba(249,115,22,0.4); font-size: 1.3rem; padding: 18px 45px;">Login / Book Service 🚗</a>
+            <a href="{% url 'accounts:login' %}" class="h-btn" style="background: #f97316; color: #fff; box-shadow: 0 10px 25px rgba(249,115,22,0.4); font-size: 1.1rem; padding: 14px 30px;">Login / Book Service 🚗</a>
         {% endif %}
-        <a href="{% url 'core:ai_mechanic' %}" class="h-btn" style="background: #29d3c6; color: #111; box-shadow: 0 10px 25px rgba(41,211,198,0.4); font-size: 1.3rem; padding: 18px 45px;">Talk to AI Mechanic 🤖</a>
+        <a href="{% url 'core:ai_mechanic' %}" class="h-btn" style="background: #29d3c6; color: #111; box-shadow: 0 10px 25px rgba(41,211,198,0.4); font-size: 1.1rem; padding: 14px 30px;">Talk to AI Mechanic 🤖</a>
     </div>
     
     <!-- Animated Car Image -->
