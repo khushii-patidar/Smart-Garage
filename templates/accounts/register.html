@@ -2,12 +2,12 @@
 {% block title %}Create Account — {{ SITE_NAME }}{% endblock %}
 
 {% block content %}
-<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;">
-  <div class="card" style="width:100%; max-width:460px;">
-    <a href="{% url 'core:home' %}" class="brand" style="margin-bottom:28px;">
+<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; background:radial-gradient(circle at 80% 20%, rgba(255,170,29,0.08), transparent 40%), radial-gradient(circle at 20% 80%, rgba(41,211,198,0.08), transparent 40%);">
+  <div class="card" style="width:100%; max-width:400px;">
+    <a href="{% url 'core:home' %}" class="brand" style="margin-bottom:24px;">
       <span class="brand-mark">SG</span> Smart Garage
     </a>
-    <h2 style="margin-bottom:4px;">Create your account</h2>
+    <h2 style="margin-bottom:4px; font-size: 24px;">Create Account</h2>
     <p style="margin-bottom:28px;">Book services and track your vehicles online.</p>
 
     <form method="post">

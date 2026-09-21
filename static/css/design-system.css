@@ -98,10 +98,10 @@ p { margin: 0 0 16px 0; }
   background: var(--surface-3);
   color: var(--paper);
   border: 1px solid var(--steel);
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: var(--radius-sm);
   font-weight: 600;
-  font-size: 1.1rem; /* INCREASED */
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s var(--ease);
   font-family: var(--font-body);
@@ -129,14 +129,14 @@ p { margin: 0 0 16px 0; }
   background: rgba(239, 68, 68, 0.1);
   border-color: var(--red);
 }
-.btn-sm { padding: 6px 14px; font-size: 1rem; } /* INCREASED */
+.btn-sm { padding: 6px 12px; font-size: 0.9rem; }
 .btn-block { width: 100%; justify-content: center; }
 
 /* Cards & Layout ----------------------------------------------------- */
 
 .grid {
   display: grid;
-  gap: 24px;
+  gap: 20px;
 }
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
@@ -147,10 +147,10 @@ p { margin: 0 0 16px 0; }
   background: var(--surface-2);
   border: 1px solid var(--surface-3);
   border-radius: var(--radius-lg);
-  padding: 20px 25px;
+  padding: 16px 20px;
   display: grid;
   grid-template-columns: 2fr 1.5fr;
-  gap: 20px;
+  gap: 15px;
   align-items: center;
   transition: all 0.3s var(--ease);
 }
@@ -177,7 +177,7 @@ input:focus, select:focus, textarea:focus {
   background: var(--surface);
   border: 1px solid var(--surface-3);
   border-radius: var(--radius-md);
-  padding: 24px;
+  padding: 20px;
   box-shadow: var(--shadow-card);
 }
 
