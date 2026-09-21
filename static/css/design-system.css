@@ -208,20 +208,20 @@ input:focus, select:focus, textarea:focus {
 .field { margin-bottom: 18px; }
 .field label {
   display: block;
-  font-size: 1.1rem; /* INCREASED */
+  font-size: 14px;
   font-weight: 600;
   color: var(--muted);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .field input, .field select, .field textarea {
   width: 100%;
-  padding: 14px 16px;
+  padding: 10px 14px;
   background: var(--surface-2);
   border: 1px solid var(--steel);
   border-radius: var(--radius-sm);
   color: var(--paper);
   font-family: 'Poppins', sans-serif !important;
-  font-size: 1.1rem; /* INCREASED */
+  font-size: 14px;
   transition: border-color 0.18s var(--ease);
 }
 .field input:focus, .field select:focus, .field textarea:focus {
