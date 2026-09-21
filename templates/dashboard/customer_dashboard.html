@@ -5,42 +5,42 @@
 <style>
 /* RecipeHub Style Dashboard */
 body { background: #070c18; color: #fff; font-family: 'Poppins', sans-serif; }
-.nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); background: #0f172a; }
-.logo { font-size: 18px; font-weight: 900; color: #fff; text-decoration: none; }
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid rgba(255,255,255,0.05); background: #0f172a; }
+.logo { font-size: 24px; font-weight: 900; color: #fff; text-decoration: none; }
 .logo span { color: #f97316; }
-.nbtn { padding: 7px 15px; border-radius: 7px; font-weight: 700; text-decoration: none; transition: 0.3s; }
+.nbtn { padding: 10px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; transition: 0.3s; }
 .nreg { background: #ef4444; color: #fff; }
 .nreg:hover { background: #dc2626; }
 
-.dash-container { max-width: 750px; margin: 15px auto; padding: 0 15px; }
-.welcome-box { text-align: center; margin-bottom: 22px; }
-.welcome-box h1 { font-size: 18px; font-weight: 900; margin-bottom: 3px; }
-.welcome-box p { color: rgba(255,255,255,0.5); font-size: 10px; }
+.dash-container { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
+.welcome-box { text-align: center; margin-bottom: 30px; }
+.welcome-box h1 { font-size: 24px; font-weight: 900; margin-bottom: 5px; }
+.welcome-box p { color: rgba(255,255,255,0.5); font-size: 14px; }
 
-.btn-or { background: #f97316; color: #fff; padding: 6px 12px; border-radius: 6px; font-weight: 700; font-size: 9px; text-decoration: none; transition: 0.3s; display: inline-block; }
-.btn-or:hover { transform: translateY(-2px); box-shadow: 0 7px 18px rgba(249,115,22,0.3); }
+.btn-or { background: #f97316; color: #fff; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 13px; text-decoration: none; transition: 0.3s; display: inline-block; }
+.btn-or:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(249,115,22,0.3); }
 
-.car-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(225px, 1fr)); gap: 11px; margin-top: 15px; }
-.car-card { background: #1b1e26; border: 1px solid rgba(255,255,255,0.05); padding: 11px; border-radius: 9px; position: relative; overflow: hidden; }
+.car-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 20px; }
+.car-card { background: #1b1e26; border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; position: relative; overflow: hidden; }
 .car-card:hover { border-color: #29d3c6; }
-.c-badge { background: rgba(41,211,198,0.1); color: #29d3c6; padding: 2px 6px; border-radius: 4px; font-size: 8px; font-weight: 700; display: inline-block; margin-bottom: 6px; }
-.car-name { font-size: 13px; font-weight: 800; margin-bottom: 3px; }
-.car-sub { color: rgba(255,255,255,0.4); font-size: 9px; margin-bottom: 11px; }
-.c-btn { width: 100%; display: block; text-align: center; background: rgba(255,255,255,0.05); color: #fff; padding: 6px; border-radius: 6px; font-weight: 600; font-size: 9px; text-decoration: none; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
+.c-badge { background: rgba(41,211,198,0.1); color: #29d3c6; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 8px; }
+.car-name { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+.car-sub { color: rgba(255,255,255,0.4); font-size: 12px; margin-bottom: 15px; }
+.c-btn { width: 100%; display: block; text-align: center; background: rgba(255,255,255,0.05); color: #fff; padding: 8px; border-radius: 8px; font-weight: 600; font-size: 13px; text-decoration: none; border: 1px solid rgba(255,255,255,0.1); transition: 0.2s; }
 .c-btn:hover { background: #f97316; border-color: #f97316; }
-.empty-box { text-align: center; padding: 30px 15px; background: #1b1e26; border-radius: 12px; border: 1px dashed rgba(255,255,255,0.1); }
-.empty-box h2 { font-size: 18px; margin-bottom: 6px; }
+.empty-box { text-align: center; padding: 40px 20px; background: #1b1e26; border-radius: 16px; border: 1px dashed rgba(255,255,255,0.1); }
+.empty-box h2 { font-size: 24px; margin-bottom: 8px; }
 
 /* Pizza Tracker CSS */
-.tracker-container { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; position: relative; width: 100%; }
-.tracker-step { flex: 1; text-align: center; position: relative; font-size: 7px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0; z-index: 2; padding: 0 2px; overflow-wrap: break-word; }
-.tracker-icon { width: 24px; height: 24px; background: #1b1e26; border: 2px solid rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 6px; font-size: 10px; position: relative; z-index: 2; transition: 0.3s; }
-.tracker-line { position: absolute; top: 12px; left: 50%; width: 100%; height: 2px; background: rgba(255,255,255,0.1); z-index: 1; }
+.tracker-container { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; position: relative; width: 100%; }
+.tracker-step { flex: 1; text-align: center; position: relative; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0; z-index: 2; padding: 0 2px; overflow-wrap: break-word; }
+.tracker-icon { width: 32px; height: 32px; background: #1b1e26; border: 2px solid rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; font-size: 14px; position: relative; z-index: 2; transition: 0.3s; }
+.tracker-line { position: absolute; top: 16px; left: 50%; width: 100%; height: 2px; background: rgba(255,255,255,0.1); z-index: 1; }
 .tracker-step:last-child .tracker-line { display: none; }
 .tracker-step.done .tracker-icon { background: #22c55e; border-color: #22c55e; color: #111; }
 .tracker-step.done .tracker-line { background: #22c55e; }
 .tracker-step.done { color: #22c55e; }
-.tracker-step.active .tracker-icon { background: #f97316; border-color: #f97316; box-shadow: 0 0 11px rgba(249,115,22,0.4); color: #fff; }
+.tracker-step.active .tracker-icon { background: #f97316; border-color: #f97316; box-shadow: 0 0 15px rgba(249,115,22,0.4); color: #fff; }
 .tracker-step.active { color: #f97316; }
 </style>
 {% endblock %}
@@ -56,12 +56,12 @@ body { background: #070c18; color: #fff; font-family: 'Poppins', sans-serif; }
     <a href="{% url 'customers:add_vehicle' %}" class="btn-or">➕ Add New Car</a>
   </div>
 
-  <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 7px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 7px;">
+  <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
     🚙 My Cars
   </h2>
 
   {% if vehicles %}
-    <div class="car-grid" style="margin-bottom: 37px;">
+    <div class="car-grid" style="margin-bottom: 50px;">
       {% for v in vehicles %}
         <div class="car-card hover-scale">
           <div class="c-badge">{{ v.registration_number }}</div>
@@ -73,26 +73,26 @@ body { background: #070c18; color: #fff; font-family: 'Poppins', sans-serif; }
       {% endfor %}
     </div>
   {% else %}
-    <div class="empty-box" style="margin-bottom: 37px; text-align:center;">
+    <div class="empty-box" style="margin-bottom: 50px; text-align:center;">
       <h2 class="animated-tool">🚖</h2>
-      <h3 style="font-size:15px; margin-bottom:7px;">Your garage is completely empty!</h3>
-      <p style="color:rgba(255,255,255,0.4); margin-bottom:15px;">Add your car first to book a service.</p>
+      <h3 style="font-size:20px; margin-bottom:10px;">Your garage is completely empty!</h3>
+      <p style="color:rgba(255,255,255,0.4); margin-bottom:20px;">Add your car first to book a service.</p>
       <a href="{% url 'customers:add_vehicle' %}" class="btn-or hover-scale">➕ Add Your First Car</a>
     </div>
   {% endif %}
 
-  <h2 style="font-size: 18px; font-weight: 800; margin-bottom: 7px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 7px;">
+  <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
     📝 My Service History
   </h2>
   
   {% if bookings %}
     <div class="car-grid">
       {% for b in bookings %}
-        <div class="car-card" style="border-left: 3px solid #f97316;">
+        <div class="car-card" style="border-left: 4px solid #f97316;">
           <div class="car-name">{{ b.vehicle.brand }} {{ b.vehicle.car_model }}</div>
           <div class="car-sub">Service: {{ b.get_service_type_display }} • 📅 {{ b.booking_date }}</div>
           
-          <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 7px;">
+          <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px;">
               
               <!-- Pizza Tracker HTML -->
               <div class="tracker-container">
@@ -117,20 +117,20 @@ body { background: #070c18; color: #fff; font-family: 'Poppins', sans-serif; }
                 </div>
               </div>
               <div style="display: flex; justify-content: space-between;">
-                <span style="font-size: 9px; color: rgba(255,255,255,0.6);">Final Bill:</span>
-                <span style="font-size: 10px; font-weight: 700; color: #f97316;">
+                <span style="font-size: 13px; color: rgba(255,255,255,0.6);">Final Bill:</span>
+                <span style="font-size: 14px; font-weight: 700; color: #f97316;">
                   {% if b.final_bill %}₹{{ b.final_bill }}{% else %}Wait for bill{% endif %}
                 </span>
               </div>
               
               {% if b.status == 'Ready' and b.final_bill %}
-                <div style="margin-top: 11px;">
-                  <button onclick="alert('Payment Gateway Integration (Razorpay/Stripe) is planned for Phase 2!');" class="action-btn" style="background: #22c55e; color: #fff; width: 100%; border: none; padding: 9px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 12px;">💳 Pay ₹{{ b.final_bill }} Now</button>
+                <div style="margin-top: 15px;">
+                  <button onclick="alert('Payment Gateway Integration (Razorpay/Stripe) is planned for Phase 2!');" class="action-btn" style="background: #22c55e; color: #fff; width: 100%; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 16px;">💳 Pay ₹{{ b.final_bill }} Now</button>
                 </div>
               {% endif %}
 
               {% if b.status == 'Delivered' and b.final_bill %}
-                <div style="margin-top: 11px; display: flex; gap: 7px; justify-content: center;">
+                <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center;">
                   <a href="{% url 'bookings:view_invoice' b.id %}" target="_blank" class="action-btn btn-bill">📄 Download Bill PDF</a>
                   
                   {% if not b.rating %}
@@ -149,7 +149,7 @@ body { background: #070c18; color: #fff; font-family: 'Poppins', sans-serif; }
       {% endfor %}
     </div>
   {% else %}
-    <div class="empty-box" style="padding: 22px;">
+    <div class="empty-box" style="padding: 30px;">
       <p style="color:rgba(255,255,255,0.4); margin: 0;">You haven't booked any services yet.</p>
     </div>
   {% endif %}

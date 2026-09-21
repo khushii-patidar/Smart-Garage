@@ -4,84 +4,84 @@
 {% block extra_css %}
 <style>
 /* RecipeHub Vibe CSS for Smart Garage */
-.hero { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 75px); padding: 30px; position: relative; overflow: hidden; }
+.hero { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - 100px); padding: 40px; position: relative; overflow: hidden; }
 .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at top right, rgba(41,211,198,0.1), transparent 40%), radial-gradient(circle at bottom left, rgba(249,115,22,0.1), transparent 40%); z-index: 0; }
-.hero-in { text-align: center; max-width: 675px; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+.hero-in { text-align: center; max-width: 900px; z-index: 1; display: flex; flex-direction: column; align-items: center; }
 
 /* Car Image Animation */
 .hero-car-img {
-    max-width: 450px;
+    max-width: 600px;
     width: 100%;
-    margin-top: 22px;
+    margin-top: 30px;
     animation: floatCar 4s ease-in-out infinite;
-    filter: drop-shadow(0 15px 22px rgba(0,0,0,0.5));
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
 }
 @keyframes floatCar {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-11px); }
+    50% { transform: translateY(-15px); }
     100% { transform: translateY(0px); }
 }
 
-.title { font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 15px; animation: slideUp 0.8s ease-out; }
+.title { font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; animation: slideUp 0.8s ease-out; }
 .title span { color: #f97316; }
-.sub { font-size: 1.1rem; color: rgba(255,255,255,0.7); margin-bottom: 30px; max-width: 450px; margin-left: auto; margin-right: auto; animation: slideUp 1s ease-out; }
+.sub { font-size: 1.1rem; color: rgba(255,255,255,0.7); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; animation: slideUp 1s ease-out; }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(22px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-.h-btn { background: #29d3c6; color: #111; padding: 11px 26px; border-radius: 74px; font-weight: 700; font-size: 1.1rem; text-decoration: none; display: inline-block; transition: 0.3s; animation: slideUp 1.2s ease-out; }
+.h-btn { background: #29d3c6; color: #111; padding: 15px 35px; border-radius: 99px; font-weight: 700; font-size: 1.1rem; text-decoration: none; display: inline-block; transition: 0.3s; animation: slideUp 1.2s ease-out; }
 .badge {
-  display: inline-flex; align-items: center; gap: 6px;
+  display: inline-flex; align-items: center; gap: 8px;
   background: var(--surface-3); border: 1px solid var(--steel);
-  padding: 4px 12px; border-radius: 74px; font-size: 9px; font-weight: 600;
-  color: var(--paper); margin-bottom: 18px;
+  padding: 6px 16px; border-radius: 99px; font-size: 13px; font-weight: 600;
+  color: var(--paper); margin-bottom: 24px;
 }
-.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #f97316; box-shadow: 0 0 7px #f97316; }
-.htitle { font-size: clamp(28px, 6vw, 48px); font-weight: 900; line-height: 1.1; margin-bottom: 15px; color: var(--paper); }
+.badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #f97316; box-shadow: 0 0 10px #f97316; }
+.htitle { font-size: clamp(38px, 6vw, 64px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; color: var(--paper); }
 .htitle span.o { color: #f97316; }
 .htitle span.p { color: #29d3c6; }
-.hero-sub { color: var(--muted); font-size: 13px; margin: 0 auto 30px; max-width: 450px; }
-.hero-btns { display: flex; gap: 12px; justify-content: center; margin-bottom: 45px; flex-wrap: wrap; }
-.btn-or { background: #f97316; color: #fff; padding: 10px 21px; border-radius: 9px; font-weight: 700; transition: 0.3s; }
-.btn-or:hover { background: #ea580c; transform: translateY(-2px); box-shadow: 0 7px 18px rgba(249,115,22,0.3); }
-.btn-out { background: var(--surface-3); color: var(--paper); border: 1px solid var(--steel); padding: 10px 21px; border-radius: 9px; font-weight: 700; transition: 0.3s; }
-.btn-out:hover { background: var(--surface-2); transform: translateY(-2px); }
+.hero-sub { color: var(--muted); font-size: 18px; margin: 0 auto 40px; max-width: 600px; }
+.hero-btns { display: flex; gap: 16px; justify-content: center; margin-bottom: 60px; flex-wrap: wrap; }
+.btn-or { background: #f97316; color: #fff; padding: 14px 28px; border-radius: 12px; font-weight: 700; transition: 0.3s; }
+.btn-or:hover { background: #ea580c; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(249,115,22,0.3); }
+.btn-out { background: var(--surface-3); color: var(--paper); border: 1px solid var(--steel); padding: 14px 28px; border-radius: 12px; font-weight: 700; transition: 0.3s; }
+.btn-out:hover { background: var(--surface-2); transform: translateY(-3px); }
 
 /* Float Animations */
 .floaters { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1; }
-.floater { position: absolute; width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; animation: floatAnim 6s ease-in-out infinite alternate; box-shadow: 0 7px 15px rgba(0,0,0,0.2); border: 1px solid var(--steel); }
+.floater { position: absolute; width: 35px; height: 35px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; animation: floatAnim 6s ease-in-out infinite alternate; box-shadow: 0 10px 20px rgba(0,0,0,0.2); border: 1px solid var(--steel); }
 .g-or { background: linear-gradient(135deg, #ea580c, #f97316); top: 20%; left: 10%; animation-delay: 0s; }
 .g-pu { background: linear-gradient(135deg, #7c3aed, #a855f7); top: 60%; left: 15%; animation-delay: 1s; }
 .g-bl { background: linear-gradient(135deg, #2563eb, #3b82f6); top: 30%; right: 10%; animation-delay: 2s; }
 .g-gn { background: linear-gradient(135deg, #059669, #10b981); top: 65%; right: 15%; animation-delay: 3s; }
-@keyframes floatAnim { from { transform: translateY(0) rotate(0deg); } to { transform: translateY(-7px) rotate(6deg); } }
+@keyframes floatAnim { from { transform: translateY(0) rotate(0deg); } to { transform: translateY(-10px) rotate(6deg); } }
 
 /* Section & Grid */
-.sec { padding: 60px 15px; max-width: 900px; margin: 0 auto; text-align: center; }
-.sec-t { font-size: 24px; font-weight: 900; color: var(--paper); margin-bottom: 30px; }
+.sec { padding: 80px 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
+.sec-t { font-size: 32px; font-weight: 900; color: var(--paper); margin-bottom: 40px; }
 .sec-t span { color: #f97316; }
-.fgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(225px, 1fr)); gap: 18px; }
-.fcard { background: var(--surface); border: 1px solid var(--surface-3); padding: 24px; border-radius: 15px; text-align: left; transition: 0.3s; }
-.fcard:hover { transform: translateY(-3px); border-color: #f97316; }
-.fcard-icon { width: 37px; height: 37px; background: rgba(249,115,22,0.1); color: #f97316; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 15px; }
-.fcard h3 { color: var(--paper); font-size: 15px; margin-bottom: 9px; }
-.fcard p { color: var(--muted); font-size: 11px; line-height: 1.6; margin: 0; }
+.fgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.fcard { background: var(--surface); border: 1px solid var(--surface-3); padding: 32px; border-radius: 20px; text-align: left; transition: 0.3s; }
+.fcard:hover { transform: translateY(-5px); border-color: #f97316; }
+.fcard-icon { width: 50px; height: 50px; background: rgba(249,115,22,0.1); color: #f97316; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; }
+.fcard h3 { color: var(--paper); font-size: 20px; margin-bottom: 12px; }
+.fcard p { color: var(--muted); font-size: 15px; line-height: 1.6; margin: 0; }
 
 /* Banner */
-.banner { border-radius: 21px; padding: 48px 30px; text-align: center; background: linear-gradient(135deg, var(--surface-2), var(--surface-3)); border: 1px solid var(--steel); margin-top: 30px; }
-.banner h2 { font-size: 25px; font-weight: 900; color: var(--paper); margin-bottom: 9px; }
-.banner p { color: var(--muted); margin-bottom: 21px; font-size: 11px; }
+.banner { border-radius: 28px; padding: 64px 40px; text-align: center; background: linear-gradient(135deg, var(--surface-2), var(--surface-3)); border: 1px solid var(--steel); margin-top: 40px; }
+.banner h2 { font-size: 34px; font-weight: 900; color: var(--paper); margin-bottom: 12px; }
+.banner p { color: var(--muted); margin-bottom: 28px; font-size: 15px; }
 
 /* Nav */
-.nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-.logo { font-size: 18px; font-weight: 900; color: #fff; text-decoration: none; }
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.logo { font-size: 24px; font-weight: 900; color: #fff; text-decoration: none; }
 .logo span { color: #f97316; }
-.nbtn { padding: 7px 15px; border-radius: 7px; font-weight: 700; text-decoration: none; transition: 0.3s; }
+.nbtn { padding: 10px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; transition: 0.3s; }
 .nlogin { color: rgba(255,255,255,0.7); }
 .nlogin:hover { color: #fff; }
-.nreg { background: #f97316; color: #fff; margin-left: 7px; }
+.nreg { background: #f97316; color: #fff; margin-left: 10px; }
 </style>
 {% endblock %}
 
@@ -89,20 +89,20 @@
 <!-- HERO SECTION -->
 <div class="hero">
   <div class="hero-in">
-    <h1 class="htitle" style="font-size: clamp(22px, 5vw, 45px);">Smart<span class="o">Garage</span></h1>
-    <p class="hero-sub" style="font-size: 11px; max-width: 450px; margin-bottom: 15px;">India's Smartest Platform for Car Service & Repair. Book instantly or chat with our AI Mechanic.</p>
+    <h1 class="htitle" style="font-size: clamp(40px, 6vw, 70px);">Smart<span class="o">Garage</span></h1>
+    <p class="hero-sub" style="font-size: 15px; max-width: 600px; margin-bottom: 20px;">India's Smartest Platform for Car Service & Repair. Book instantly or chat with our AI Mechanic.</p>
     
-    <div style="display: flex; gap: 11px; justify-content: center; flex-wrap: wrap; margin-top: 7px;">
+    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
         {% if request.user.is_authenticated %}
-            <a href="{% url 'core:dashboard_redirect' %}" class="h-btn" style="background: #f97316; color: #fff; box-shadow: 0 7px 18px rgba(249,115,22,0.4); font-size: 0.95rem; padding: 7px 16px;">Go to Dashboard 🚀</a>
+            <a href="{% url 'core:dashboard_redirect' %}" class="h-btn" style="background: #f97316; color: #fff; box-shadow: 0 10px 25px rgba(249,115,22,0.4); font-size: 0.95rem; padding: 10px 22px;">Go to Dashboard 🚀</a>
         {% else %}
-            <a href="{% url 'accounts:login' %}" class="h-btn" style="background: #f97316; color: #fff; box-shadow: 0 7px 18px rgba(249,115,22,0.4); font-size: 0.95rem; padding: 7px 16px;">Login / Book Service 🚗</a>
+            <a href="{% url 'accounts:login' %}" class="h-btn" style="background: #f97316; color: #fff; box-shadow: 0 10px 25px rgba(249,115,22,0.4); font-size: 0.95rem; padding: 10px 22px;">Login / Book Service 🚗</a>
         {% endif %}
-        <a href="{% url 'core:ai_mechanic' %}" class="h-btn" style="background: #29d3c6; color: #111; box-shadow: 0 7px 18px rgba(41,211,198,0.4); font-size: 0.95rem; padding: 7px 16px;">Talk to AI Mechanic 🤖</a>
+        <a href="{% url 'core:ai_mechanic' %}" class="h-btn" style="background: #29d3c6; color: #111; box-shadow: 0 10px 25px rgba(41,211,198,0.4); font-size: 0.95rem; padding: 10px 22px;">Talk to AI Mechanic 🤖</a>
     </div>
     
     <!-- Animated Car Image -->
-    <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&trim=bottom,left,right" alt="Supercar" class="hero-car-img" style="border-radius: 9px; width: 100%; max-width: 337px; height: auto; margin-top: 22px;">
+    <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80&trim=bottom,left,right" alt="Supercar" class="hero-car-img" style="border-radius: 12px; width: 100%; max-width: 450px; height: auto; margin-top: 30px;">
   </div>
 
   <div class="floaters">
@@ -144,27 +144,27 @@
 </div>
 
 <!-- BEFORE / AFTER MAGIC SLIDER -->
-<div class="sec" style="background: #0d0e12; padding: 45px 15px;">
+<div class="sec" style="background: #0d0e12; padding: 60px 20px;">
   <div class="sec-t">✨ See The <span>Difference</span></div>
-  <p style="text-align: center; color: rgba(255,255,255,0.6); margin-bottom: 30px; max-width: 450px; margin-left: auto; margin-right: auto;">Drag the slider to see how we transform your car from dusty to showroom ready!</p>
+  <p style="text-align: center; color: rgba(255,255,255,0.6); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Drag the slider to see how we transform your car from dusty to showroom ready!</p>
   
-  <div class="slider-container" style="position: relative; max-width: 450px; height: 262px; margin: 0 auto; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.5); cursor: ew-resize;">
+  <div class="slider-container" style="position: relative; max-width: 600px; height: 350px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); cursor: ew-resize;">
     <!-- AFTER Image (Bottom Layer) -->
     <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="After Repair" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
     
     <!-- BEFORE Image (Top Layer with CSS filters to make it look old/dusty) -->
-    <div id="before-img-wrapper" style="position: absolute; top: 0; left: 0; width: 50%; height: 100%; overflow: hidden; border-right: 3px solid #ffaa1d;">
-      <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Before Repair" style="width: 450px; height: 100%; object-fit: cover; filter: grayscale(80%) sepia(50%) brightness(0.6) contrast(1.2);">
+    <div id="before-img-wrapper" style="position: absolute; top: 0; left: 0; width: 50%; height: 100%; overflow: hidden; border-right: 4px solid #ffaa1d;">
+      <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Before Repair" style="width: 600px; height: 100%; object-fit: cover; filter: grayscale(80%) sepia(50%) brightness(0.6) contrast(1.2);">
       
       <!-- 'Before' Label -->
-      <span style="position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.7); color: #fff; padding: 3px 11px; border-radius: 15px; font-weight: bold; font-size: 10px;">BEFORE</span>
+      <span style="position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.7); color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 14px;">BEFORE</span>
     </div>
 
     <!-- 'After' Label -->
-    <span style="position: absolute; top: 15px; right: 15px; background: rgba(255,170,29,0.9); color: #111; padding: 3px 11px; border-radius: 15px; font-weight: bold; font-size: 10px;">AFTER</span>
+    <span style="position: absolute; top: 20px; right: 20px; background: rgba(255,170,29,0.9); color: #111; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 14px;">AFTER</span>
     
     <!-- Slider Handle -->
-    <div id="slider-handle" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 30px; height: 30px; background: #ffaa1d; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 11px rgba(0,0,0,0.5); pointer-events: none;">
+    <div id="slider-handle" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: #ffaa1d; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(0,0,0,0.5); pointer-events: none;">
       <span style="color: #111; font-weight: 900; letter-spacing: -2px;">&lt;&gt;</span>
     </div>
   </div>
@@ -212,7 +212,7 @@
     <h2>🛠️ Add Your Car Today!</h2>
     <p>Create a free account and enjoy the best car servicing experience.</p>
     {% if not request.user.is_authenticated %}
-      <a href="{% url 'accounts:register' %}" class="btn-or" style="display:inline-block; margin-top:7px;">
+      <a href="{% url 'accounts:register' %}" class="btn-or" style="display:inline-block; margin-top:10px;">
         🚀 Join Free
       </a>
     {% endif %}

@@ -2,13 +2,13 @@
 {% block title %}Mechanic Login — Smart Garage{% endblock %}
 
 {% block content %}
-<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:18px;">
-  <div class="card" style="width:100%; max-width:300px; border-top: 3px solid #ffaa1d;">
-    <a href="{% url 'core:home' %}" class="brand" style="margin-bottom:21px;">
+<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;">
+  <div class="card" style="width:100%; max-width:400px; border-top: 4px solid #ffaa1d;">
+    <a href="{% url 'core:home' %}" class="brand" style="margin-bottom:28px;">
       <span class="brand-mark" style="background: #ffaa1d; color: #111;">👨‍🔧</span> Smart Garage
     </a>
-    <h2 style="margin-bottom:3px; color: #ffaa1d;">Mechanic Login</h2>
-    <p style="margin-bottom:21px; color: var(--muted);">Enter your staff credentials to access the workspace.</p>
+    <h2 style="margin-bottom:4px; color: #ffaa1d;">Mechanic Login</h2>
+    <p style="margin-bottom:28px; color: var(--muted);">Enter your staff credentials to access the workspace.</p>
 
     <form method="post">
       {% csrf_token %}
@@ -17,12 +17,12 @@
 
       <!-- Errors -->
       {% if form.errors %}
-      <div style="padding:9px; border-radius:var(--radius-sm); background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); color:var(--red); font-size:10px; margin-bottom:12px;">
+      <div style="padding:12px; border-radius:var(--radius-sm); background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); color:var(--red); font-size:14px; margin-bottom:16px;">
         Invalid username or password.
       </div>
       {% endif %}
 
-      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; background: #ffaa1d; color: #111; font-weight: 800; margin-bottom: 15px;">Enter Workspace</button>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; background: #ffaa1d; color: #111; font-weight: 800; margin-bottom: 20px;">Enter Workspace</button>
       
     </form>
   </div>

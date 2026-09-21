@@ -6,10 +6,10 @@
     <nav>
       {% block sidebar_links %}{% endblock %}
     </nav>
-    <div style="padding:12px 18px; margin-top:18px; border-top:1px solid var(--steel-soft);">
+    <div style="padding:16px 24px; margin-top:24px; border-top:1px solid var(--steel-soft);">
       <form method="post" action="{% url 'accounts:logout' %}">
         {% csrf_token %}
-        <button type="submit" class="btn btn-ghost" style="padding:6px 0;">Log out</button>
+        <button type="submit" class="btn btn-ghost" style="padding:8px 0;">Log out</button>
       </form>
     </div>
   </aside>
@@ -18,7 +18,7 @@
     <div class="dash-topbar">
       <button id="sidebar-toggle" class="btn btn-ghost" style="display:none;">☰</button>
       <h3 style="margin:0;">{% block page_title %}Dashboard{% endblock %}</h3>
-      <div style="display:flex; align-items:center; gap:7px;">
+      <div style="display:flex; align-items:center; gap:10px;">
         <span class="badge badge-neutral">{{ request.user.get_role_display }}</span>
         <span style="font-weight:600;">{{ request.user.get_full_name|default:request.user.username }}</span>
       </div>
