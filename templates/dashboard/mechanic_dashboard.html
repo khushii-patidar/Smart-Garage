@@ -4,39 +4,39 @@
 
 {% block extra_css %}
 <style>
-.mech-container { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
-.mech-header { text-align: center; margin-bottom: 20px; }
-.mech-header h1 { font-size: 24px; font-weight: 900; color: #29d3c6; }
-.mech-header p { color: rgba(255,255,255,0.6); font-size: 14px; }
+.mech-container { max-width: 750px; margin: 15px auto; padding: 0 15px; }
+.mech-header { text-align: center; margin-bottom: 15px; }
+.mech-header h1 { font-size: 18px; font-weight: 900; color: #29d3c6; }
+.mech-header p { color: rgba(255,255,255,0.6); font-size: 10px; }
 
-.task-section { margin-bottom: 30px; }
-.task-section h2 { font-size: 18px; font-weight: 800; border-bottom: 2px solid var(--surface-3); padding-bottom: 8px; margin-bottom: 15px; }
+.task-section { margin-bottom: 22px; }
+.task-section h2 { font-size: 13px; font-weight: 800; border-bottom: 2px solid var(--surface-3); padding-bottom: 6px; margin-bottom: 11px; }
 .task-section.red h2 { border-color: rgba(2ef4444, 0.4); color: #ef4444; }
 .task-section.yellow h2 { border-color: rgba(255,170,29,0.4); color: #ffaa1d; }
 
 .task-card {
     background: linear-gradient(145deg, #1b1e26, #242833);
-    border-radius: 12px; padding: 15px;
+    border-radius: 9px; padding: 11px;
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 12px; border-left: 4px solid #333;
+    margin-bottom: 9px; border-left: 3px solid #333;
     transition: 0.3s;
 }
-.task-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+.task-card:hover { transform: translateY(-2px); box-shadow: 0 7px 15px rgba(0,0,0,0.5); }
 .task-card.pending { border-left-color: #ef4444; }
 .task-card.repairing { border-left-color: #ffaa1d; }
 
-.task-info h3 { font-size: 16px; margin: 0 0 4px 0; }
-.task-info p { color: var(--muted); margin: 0 0 4px 0; font-size: 13px; }
-.task-badge { display: inline-block; padding: 4px 8px; background: var(--surface-3); color: var(--paper); border-radius: 6px; font-size: 11px; font-weight: bold; margin-top: 4px; }
+.task-info h3 { font-size: 12px; margin: 0 0 3px 0; }
+.task-info p { color: var(--muted); margin: 0 0 3px 0; font-size: 9px; }
+.task-badge { display: inline-block; padding: 3px 6px; background: var(--surface-3); color: var(--paper); border-radius: 4px; font-size: 8px; font-weight: bold; margin-top: 3px; }
 
-.btn-start { background: #ef4444; color: #fff; padding: 8px 16px; border-radius: 6px; font-weight: bold; font-size: 13px; text-decoration: none; border: none; cursor: pointer; transition: 0.2s; }
+.btn-start { background: #ef4444; color: #fff; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 9px; text-decoration: none; border: none; cursor: pointer; transition: 0.2s; }
 .btn-start:hover { background: #dc2626; }
-.btn-finish { background: #22c55e; color: #fff; padding: 8px 16px; border-radius: 6px; font-weight: bold; font-size: 13px; text-decoration: none; border: none; cursor: pointer; transition: 0.2s; animation: pulse 2s infinite; }
+.btn-finish { background: #22c55e; color: #fff; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 9px; text-decoration: none; border: none; cursor: pointer; transition: 0.2s; animation: pulse 2s infinite; }
 .btn-finish:hover { background: #16a34a; animation: none; }
 
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+    70% { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
     100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
 }
 </style>

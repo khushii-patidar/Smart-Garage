@@ -2,32 +2,32 @@
 {% block title %}Create Account — {{ SITE_NAME }}{% endblock %}
 
 {% block content %}
-<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;">
-  <div class="card" style="width:100%; max-width:460px;">
-    <a href="{% url 'core:home' %}" class="brand" style="margin-bottom:28px;">
+<div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:18px;">
+  <div class="card" style="width:100%; max-width:345px;">
+    <a href="{% url 'core:home' %}" class="brand" style="margin-bottom:21px;">
       <span class="brand-mark">SG</span> Smart Garage
     </a>
-    <h2 style="margin-bottom:4px;">Create your account</h2>
-    <p style="margin-bottom:28px;">Book services and track your vehicles online.</p>
+    <h2 style="margin-bottom:3px;">Create your account</h2>
+    <p style="margin-bottom:21px;">Book services and track your vehicles online.</p>
 
     <form method="post">
       {% csrf_token %}
-      <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+      <div style="display: flex; gap: 11px; margin-bottom: 11px;">
         <div class="field" style="flex: 1; margin-bottom: 0;"><label>First name</label>{{ form.first_name }}</div>
         <div class="field" style="flex: 1; margin-bottom: 0;"><label>Username</label>{{ form.username }}</div>
       </div>
-      <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+      <div style="display: flex; gap: 11px; margin-bottom: 11px;">
         <div class="field" style="flex: 1; margin-bottom: 0;"><label>Email</label>{{ form.email }}</div>
         <div class="field" style="flex: 1; margin-bottom: 0;"><label>Phone</label>{{ form.phone }}</div>
       </div>
-      <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+      <div style="display: flex; gap: 11px; margin-bottom: 15px;">
         <div class="field" style="flex: 1; margin-bottom: 0;"><label>Password</label>{{ form.password1 }}</div>
         <div class="field" style="flex: 1; margin-bottom: 0;"><label>Confirm</label>{{ form.password2 }}</div>
       </div>
       {% if form.errors %}
-        <div style="color:var(--red); font-size:0.85rem; margin-bottom:12px;">
+        <div style="color:var(--red); font-size:0.85rem; margin-bottom:9px;">
           Please check the highlighted fields and try again:
-          <ul style="margin-top: 5px; padding-left: 15px;">
+          <ul style="margin-top: 3px; padding-left: 11px;">
             {% for field in form %}
               {% for error in field.errors %}
                 <li><strong>{{ field.label }}:</strong> {{ error }}</li>
@@ -42,7 +42,7 @@
       <button type="submit" class="btn btn-primary btn-block">Create account</button>
     </form>
 
-    <p style="margin-top:20px; font-size:0.9rem;">
+    <p style="margin-top:15px; font-size:0.9rem;">
       Already have an account?
       <a href="{% url 'accounts:login' %}" style="color:var(--cyan); font-weight:600;">Log in</a>
     </p>

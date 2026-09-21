@@ -6,21 +6,21 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <style>
 body { background: #070c18; color: #fff; font-family: 'Poppins', sans-serif; }
-.nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid rgba(255,255,255,0.05); background: #0f172a; }
-.logo { font-size: 24px; font-weight: 900; color: #fff; text-decoration: none; }
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); background: #0f172a; }
+.logo { font-size: 18px; font-weight: 900; color: #fff; text-decoration: none; }
 .logo span { color: #f97316; }
-.nbtn { padding: 10px 20px; border-radius: 10px; font-weight: 700; text-decoration: none; transition: 0.3s; }
+.nbtn { padding: 7px 15px; border-radius: 7px; font-weight: 700; text-decoration: none; transition: 0.3s; }
 .nlogin { color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.1); }
 .nlogin:hover { background: rgba(255,255,255,0.05); }
 
-.map-container { max-width: 900px; margin: 40px auto; padding: 0 20px; text-align: center; }
-.map-container h1 { font-size: 32px; font-weight: 900; margin-bottom: 10px; }
-.map-container p { color: rgba(255,255,255,0.5); font-size: 16px; margin-bottom: 30px; }
+.map-container { max-width: 675px; margin: 30px auto; padding: 0 15px; text-align: center; }
+.map-container h1 { font-size: 24px; font-weight: 900; margin-bottom: 7px; }
+.map-container p { color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 22px; }
 
-#map { height: 500px; width: 100%; border-radius: 20px; border: 2px solid rgba(255,255,255,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.5); z-index: 1; }
+#map { height: 375px; width: 100%; border-radius: 15px; border: 2px solid rgba(255,255,255,0.1); box-shadow: 0 15px 30px rgba(0,0,0,0.5); z-index: 1; }
 
-.btn-or { background: #f97316; color: #fff; padding: 14px 28px; border-radius: 12px; font-weight: 700; font-size: 16px; border: none; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-.btn-or:hover { background: #ea580c; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(249,115,22,0.3); }
+.btn-or { background: #f97316; color: #fff; padding: 10px 21px; border-radius: 9px; font-weight: 700; font-size: 12px; border: none; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 7px; margin-bottom: 15px; }
+.btn-or:hover { background: #ea580c; transform: translateY(-2px); box-shadow: 0 7px 15px rgba(249,115,22,0.3); }
 
 /* Fix Leaflet text colors for dark theme */
 .leaflet-container { font-family: 'Poppins', sans-serif; color: #111; }
