@@ -23,7 +23,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["smart-garage.onrender.com",
+ALLOWED_HOSTS = ["smart-garage-tgk5.onrender.com",
                 "localhost",
                 "127.00.1",
                 ]
