@@ -19,11 +19,14 @@ if os.path.exists(env_file):
                 k, v = line.strip().split('=', 1)
                 os.environ.setdefault(k, v.strip())
 
-SECRET_KEY = 'django-insecure-CHANGE-THIS-IN-PRODUCTION-f6pcg8i9rq'
+SECRET_KEY = os.environ["SECRET_KEY"]
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["smart-garage.onrender.com",
+                "localhost",
+                "127.00.1",
+                ]
 
 
 # ---------------------------------------------------------------------------
